@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Savings & Revenue Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #3E8E41;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cost Savings & Revenue Calculator</h2>
+        <label>Waste Disposal Cost (per kg):</label>
+        <input type="number" id="wasteCost" placeholder="Enter disposal cost per kg">
+        
+        <label>Energy Cost (per kWh):</label>
+        <input type="number" id="energyCost" placeholder="Enter energy cost per kWh">
+        
+        <label>Food Waste (kg):</label>
+        <input type="number" id="foodWaste" placeholder="Enter food waste in kg">
+        
+        <label>Glass Waste (kg):</label>
+        <input type="number" id="glassWaste" placeholder="Enter glass waste in kg">
+        
+        <button onclick="calculateSavings()">Calculate</button>
+        
+        <div class="result" id="output"></div>
+    </div>
+
+    <script>
+        function calculateSavings() {
+            let wasteCost = parseFloat(document.getElementById('wasteCost').value) || 0;
+            let energyCost = parseFloat(document.getElementById('energyCost').value) || 0;
+            let foodWaste = parseFloat(document.getElementById('foodWaste').value) || 0;
+            let glassWaste = parseFloat(document.getElementById('glassWaste').value) || 0;
+            
+            let biogasOutput = foodWaste * 0.75; // Approx 0.75 m³ per kg
+            let energyOutput = biogasOutput * 2; // Approx 2 kWh per m³
+            let recycledSand = glassWaste * 0.85; // Approx 85% conversion rate
+            
+            let wasteSavings = (foodWaste + glassWaste) * wasteCost;
+            let energySavings = energyOutput * energyCost;
+            let totalSavings = wasteSavings + energySavings;
+            
+            document.getElementById('output').innerHTML = `
+                <p><strong>Estimated Waste Disposal Savings:</strong> $${wasteSavings.toFixed(2)}</p>
+                <p><strong>Estimated Energy Cost Savings:</strong> $${energySavings.toFixed(2)}</p>
+                <p><strong>Total Estimated Savings:</strong> $${totalSavings.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

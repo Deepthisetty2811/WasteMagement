@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Waste Monitoring</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard {
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 20px;
+        }
+        .data-box {
+            background: #e0f7fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Real-Time Waste Monitoring</h2>
+        <p>Tracking waste data dynamically (simulated for now).</p>
+        <div class="dashboard">
+            <div class="data-box">Food Waste Collected: <span id="foodWaste">0</span> kg</div>
+            <div class="data-box">Glass Waste Collected: <span id="glassWaste">0</span> kg</div>
+            <div class="data-box">Biogas Generated: <span id="biogas">0</span> m³</div>
+            <div class="data-box">Energy Produced: <span id="energy">0</span> kWh</div>
+        </div>
+    </div>
+
+    <script>
+        function updateData() {
+            let foodWaste = Math.floor(Math.random() * 100);
+            let glassWaste = Math.floor(Math.random() * 50);
+            let biogas = (foodWaste * 0.75).toFixed(2);
+            let energy = (biogas * 2).toFixed(2);
+            
+            document.getElementById('foodWaste').innerText = foodWaste;
+            document.getElementById('glassWaste').innerText = glassWaste;
+            document.getElementById('biogas').innerText = biogas;
+            document.getElementById('energy').innerText = energy;
+        }
+        
+        setInterval(updateData, 3000); // Update every 3 seconds
+    </script>
+</body>
+</html>
